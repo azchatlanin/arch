@@ -8,27 +8,22 @@
   ## settings
   - name: Enter arch-chroot localtime
     command: arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-    register: chroot_result_1
 
   - name: Enter arch-chroot hwclock
     command: arch-chroot /mnt hwclock --systohc --utc
-    register: chroot_result_2
 
   - name: Setup bootctl
     block:
       - name: Enter arch-chroot bootctl install
         command: arch-chroot /mnt bootctl install
-        register: chroot_result_3
 
       - name: Enter arch-chroot loader.conf
         command: arch-chroot /mnt rm /boot/efi/loader/loader.conf
-        register: chroot_result_4
 
       - name: Create loader.conf
         copy:
           content: 'default  arch'
-          dest: /boot/efi/loader/loader.conf
-        register: chroot_result_5
+          dest: /mnt/boot/efi/loader/loader.conf
 
       - name: Create arch.conf
         copy:
@@ -37,8 +32,7 @@
             linux  /vmlinuz-linux-lts
             initrd  /initramfs-linux-lts.img
             options  root=/dev/sdc2 rw
-          dest: /boot/efi/loader/entries/arch.conf
-        register: chroot_result_6
+          dest: /mnt/boot/efi/loader/entries/arch.conf
 
   - name: Setup hostname
     block:
@@ -46,22 +40,10 @@
         copy:
           content: 'arch-stage'
           dest: /mnt/etc/hostname
-        register: chroot_result_7
 
       - name: Set localhost
         copy:
           content: |
             127.0.0.1 localhost arch-stage
             ::1 localhost arch-stage
-          dest: /etc/hosts
-        register: chroot_result_8
-
-  - debug:
-      var: chroot_result_1.stdout_lines
-      var: chroot_result_2.stdout_lines
-      var: chroot_result_3.stdout_lines
-      var: chroot_result_4.stdout_lines
-      var: chroot_result_5.stdout_lines
-      var: chroot_result_6.stdout_lines
-      var: chroot_result_7.stdout_lines
-      var: chroot_result_8.stdout_lines
+          dest: /mnt/etc/hosts
