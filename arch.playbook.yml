@@ -33,7 +33,7 @@
           device: '{{ install_drive }}'
           label: gpt
           number: 3
-          part_start: 32GB
+          part_start: 22GB
           part_end: 25GB
           name: swap
           state: present
@@ -53,7 +53,7 @@
           dev: '{{ install_drive }}2'
           fstype: ext4
           force: yes
-      - name: Create ext4 filesystem in swap volume
+      - name: Create filesystem in swap volume
         filesystem:
           dev: '{{ install_drive }}3'
           fstype: swap
