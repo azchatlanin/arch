@@ -66,27 +66,39 @@
         command: arch-chroot /mnt export LANG=en_US.UTF-8
         command: arch-chroot /mnt locale-gen
 
-  # - name: Setup user account
-  #   block:
-  #     - name: Create user account
-  #       command: arch-chroot /mnt useradd --create-home --user-group --groups wheel {{ user_name }} --password {{ user_password }}
+  - name: Setup user account
+    block:
+      - name: Change root password
+        user: name=root update_password=always password={{ user_password }}
 
-  #     - name: Give passwordless sudo access to wheel group
-  #       lineinfile:
-  #         regexp: '{{ item.regex }}'
-  #         line: '{{ item.line }}'
-  #         dest: /mnt/etc/sudoers
-  #       loop:
-  #         - {regex: %wheel ALL=(ALL) ALL, line: %wheel ALL=(ALL) ALL}
+      - name: Create user account
+        command: arch-chroot /mnt useradd --create-home --user-group --groups wheel {{ user_name }} --password {{ user_password }}
 
-  #     - name: Chage pacman.conf
-  #       lineinfile:
-  #         regexp: '{{ item.regex }}'
-  #         line: '{{ item.line }}'
-  #         dest: /mnt/etc/pacman.conf
-  #       loop:
-  #         - {regex: Color, line: Color}
-  #         - {regex: TotalDownload, line: TotalDownload}
-  #         - {regex: VerbosePkgList, line: VerbosePkgList}
-  #         - {regex: [multilib], line: [multilib]}
-  #         - {regex: Include = /etc/pacman.d/mirrorlist, line: Include = /etc/pacman.d/mirrorlist}
+      - name: Give passwordless sudo access to wheel group
+        # copy:
+        #   content: '%wheel ALL=(ALL) ALL'
+        #   dest: /mnt/etc/sudoers.d/wheel
+        #   validate: /usr/sbin/visudo --check --file=%s
+        lineinfile:
+          regexp: '{{ item.regex }}'
+          line: '{{ item.line }}'
+          dest: /mnt/etc/sudoers
+        loop:
+          - {regex: wheel ALL=(ALL) ALL, line: '%wheel ALL=(ALL) ALL'}
+
+      - name: Chage pacman.conf
+        lineinfile:
+          regexp: '{{ item.regex }}'
+          line: '{{ item.line }}'
+          dest: /mnt/etc/pacman.conf
+        loop:
+          - {regex: Color, line: Color}
+          - {regex: TotalDownload, line: TotalDownload}
+          - {regex: VerbosePkgList, line: VerbosePkgList}
+          - {regex: multilib, line: '[multilib]'}
+          - {regex: Include = /etc/pacman.d/mirrorlist, line: Include = /etc/pacman.d/mirrorlist}
+
+  - name: Install grub
+    command: arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+  - name: Create grub config
+    command: arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
