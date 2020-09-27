@@ -1,0 +1,20 @@
+---
+- name: "Playing with Ansible and Git"
+  hosts: all
+  connection: local
+  become: "yes"
+
+  tasks:
+  ## Pacstrap
+  - name: Run pacstrap
+    command: pacstrap /mnt base base-devel linux-lts linux-firmware ansible git bash-completion networkmanager wireless_tools modemmanager mobile-broadband-provider-info usb_modeswitch rp-pppoe network-manager-applet net-tools wpa_supplicant dialog neovim curl wget tar alacritty grub efibootmgr
+    register: pacstrap_out
+
+  - name: Generate blank fstab
+    command: genfstab -U /mnt >> /mnt/etc/fstab
+
+  - name: Enter arch-chroot
+    command: arch-chroot /mnt
+
+  - debug:
+      var: pacstrap_out.stdout_lines
