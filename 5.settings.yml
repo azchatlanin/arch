@@ -1,0 +1,16 @@
+---
+- name: "Playing with Ansible and Git"
+  hosts: all
+  connection: local
+  become: "yes"
+
+  tasks:
+  ## settings
+  - name: Enter arch-chroot
+    command: arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+    command: arch-chroot /mnt hwclock --systohc --utc
+    command: arch-chroot /mnt bootctl install
+    command: arch-chroot /mnt "default arch" > /boot/efi/loader/loader.conf
+    command: arch-chroot /mnt "title  Arch Linux" > /boot/efi/loader/entries/arch.conf
+    command: arch-chroot /mnt "linux  /vmlinuz-linux-lts" >> /boot/efi/loader/entries/arch.conf
+    command: arch-chroot /mnt "options  root=/dev/sdc2 rw" >> /boot/efi/loader/entries/arch.conf
