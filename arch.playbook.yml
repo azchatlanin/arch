@@ -24,30 +24,21 @@
           label: gpt
           number: 2
           part_start: 512MB
-          part_end: 32GB
+          part_end: 22GB
           name: root
           state: present
           part_type: primary
-      - name: Create home partition
+      - name: Create swap partition
         parted:
           device: '{{ install_drive }}'
           label: gpt
           number: 3
           part_start: 32GB
-          part_end: 42GB
-          name: home
-          state: present
-          part_type: primary
-      - name: Create home partition
-        parted:
-          device: '{{ install_drive }}'
-          label: gpt
-          number: 4
-          part_start: 42GB
-          part_end: 50GB
+          part_end: 25GB
           name: swap
           state: present
           part_type: primary
+
   ## Create filesystems
   - name: Create filesystems
     block:
@@ -62,57 +53,53 @@
           dev: '{{ install_drive }}2'
           fstype: ext4
           force: yes
-      - name: Create ext4 filesystem in home volume
-        filesystem:
-          dev: '{{ install_drive }}3'
-          fstype: ext4
-          force: yes
       - name: Create ext4 filesystem in swap volume
         filesystem:
-          dev: '{{ install_drive }}4'
+          dev: '{{ install_drive }}3'
           fstype: swap
           force: yes
+
   ## Mount filesystems
-  # - name: Mount filesystems
-  #   block:
-  #     # root
-  #     - name: Mount root filesystem
-  #       mount:
-  #         path: /mnt
-  #         src: '{{ install_drive }}2'
-  #         fstype: ext4
-  #         state: mounted
-  #     # mountpoint
-  #     - name: Create mountpoint for {boot, home} volume
-  #       file:
-  #         path: /mnt/boot
-  #         state: directory
-  #       file:
-  #         path: /mnt/boot/efi
-  #         state: directory
-  #       file:
-  #         path: /mnt/home
-  #         state: directory
-  #     # boot
-  #     - name: Mount boot filesystem
-  #       mount:
-  #         path: /mnt/boot/efi
-  #         src: '{{ install_drive }}1'
-  #         fstype: vfat
-  #         state: mounted
-  #     # home
-  #     - name: Mount home filesystem
-  #       mount:
-  #         path: /mnt
-  #         src: '{{ install_drive }}3'
-  #         fstype: ext4
-  #         state: mounted
-  #     # swap
-  #     - name: Mount swap filesystem
-  #       mount:
-  #         src: '{{ install_drive }}4'
-  #         fstype: swap
-  #         opts: sw
-  #         passno: 0
-  #         dump: 0
-  #         state: present
+  - name: Mount filesystems
+    block:
+      # root
+      - name: Mount root filesystem
+        mount:
+          path: /mnt
+          src: '{{ install_drive }}2'
+          fstype: ext4
+          state: mounted
+      # mountpoint
+      - name: Create mountpoint for {boot} volume
+        file:
+          path: /mnt/boot
+          state: directory
+        file:
+          path: /mnt/boot/efi
+          state: directory
+      # boot
+      - name: Mount boot filesystem
+        mount:
+          path: /mnt/boot/efi
+          src: '{{ install_drive }}1'
+          fstype: vfat
+          state: mounted
+      # swap
+      - name: Mount swap filesystem
+        mount:
+          src: '{{ install_drive }}3'
+          fstype: swap
+          opts: sw
+          passno: 0
+          dump: 0
+          state: present
+
+  ## Pacstrap
+  - name: Run pacstrap
+    command: pacstrap /mnt base base-devel linux-lts linux-firmware ansible git bash-completion networkmanager wireless_tools modemmanager mobile-broadband-provider-info usb_modeswitch rp-pppoe network-manager-applet net-tools wpa_supplicant dialog neovim curl wget tar alacritty grub efibootmgr
+
+  - name: Generate blank fstab
+    command: genfstab -U /mnt >> /mnt/etc/fstab
+
+  - name: Get arch-chroot
+    command: arch-chroot /mnt
