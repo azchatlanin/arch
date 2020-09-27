@@ -86,13 +86,7 @@
           state: mounted
       # swap
       - name: Mount swap filesystem
-        mount:
-          src: '{{ install_drive }}3'
-          fstype: swap
-          opts: sw
-          passno: 0
-          dump: 0
-          state: present
+        command: 'swapon {{ install_drive }}3'
 
   ## Pacstrap
   - name: Run pacstrap
