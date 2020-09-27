@@ -6,11 +6,27 @@
 
   tasks:
   ## settings
-  - name: Enter arch-chroot
+  - name: Enter arch-chroot localtime
     command: arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+    register: chroot_result
+
+  - name: Enter arch-chroot hwclock
     command: arch-chroot /mnt hwclock --systohc --utc
+    register: chroot_result
+
+  - name: Enter arch-chroot bootctl install
     command: arch-chroot /mnt bootctl install
+    register: chroot_result
+
+  - name: Enter arch-chroot loader.conf
     command: arch-chroot /mnt "default arch" > /boot/efi/loader/loader.conf
+    register: chroot_result
+
+  - name: Enter arch-chroot arch.conf
     command: arch-chroot /mnt "title  Arch Linux" > /boot/efi/loader/entries/arch.conf
     command: arch-chroot /mnt "linux  /vmlinuz-linux-lts" >> /boot/efi/loader/entries/arch.conf
     command: arch-chroot /mnt "options  root=/dev/sdc2 rw" >> /boot/efi/loader/entries/arch.conf
+    register: chroot_result
+
+  - debug:
+      var: chroot_result.stdout_lines
