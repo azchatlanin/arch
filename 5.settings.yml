@@ -75,16 +75,10 @@
         command: arch-chroot /mnt useradd --create-home --user-group --groups wheel {{ user_name }} --password {{ user_password }}
 
       - name: Give passwordless sudo access to wheel group
-        # copy:
-        #   content: '%wheel ALL=(ALL) ALL'
-        #   dest: /mnt/etc/sudoers.d/wheel
-        #   validate: /usr/sbin/visudo --check --file=%s
-        lineinfile:
-          regexp: '{{ item.regex }}'
-          line: '{{ item.line }}'
-          dest: /mnt/etc/sudoers
-        loop:
-          - {regex: wheel ALL=(ALL) ALL, line: '%wheel ALL=(ALL) ALL'}
+        copy:
+          content: '%wheel ALL=(ALL) ALL'
+          dest: /mnt/etc/sudoers.d/wheel
+          validate: /usr/sbin/visudo --check --file=%s
 
       - name: Chage pacman.conf
         lineinfile:
