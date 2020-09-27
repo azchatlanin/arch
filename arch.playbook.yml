@@ -4,9 +4,6 @@
   connection: local
   become: "yes"
 
-  vars:
-    install_drive: "/dev/sdc"
-
   tasks:
   ## Partitions disk
   - name: "Partitions disk"
@@ -76,46 +73,46 @@
           fstype: swap
           force: yes
   ## Mount filesystems
-  - name: Mount filesystems
-    block:
-      # root
-      - name: Mount root filesystem
-        mount:
-          path: /mnt
-          src: '{{ install_drive }}2'
-          fstype: ext4
-          state: mounted
-      # mountpoint
-      - name: Create mountpoint for {boot, home} volume
-        file:
-          path: /mnt/boot
-          state: directory
-        file:
-          path: /mnt/boot/efi
-          state: directory
-        file:
-          path: /mnt/home
-          state: directory
-      # boot
-      - name: Mount boot filesystem
-        mount:
-          path: /mnt/boot/efi
-          src: '{{ install_drive }}1'
-          fstype: vfat
-          state: mounted
-      # home
-      - name: Mount home filesystem
-        mount:
-          path: /mnt
-          src: '{{ install_drive }}3'
-          fstype: ext4
-          state: mounted
-      # swap
-      - name: Mount swap filesystem
-        mount:
-          src: '{{ install_drive }}4'
-          fstype: swap
-          opts: sw
-          passno: 0
-          dump: 0
-          state: present
+  # - name: Mount filesystems
+  #   block:
+  #     # root
+  #     - name: Mount root filesystem
+  #       mount:
+  #         path: /mnt
+  #         src: '{{ install_drive }}2'
+  #         fstype: ext4
+  #         state: mounted
+  #     # mountpoint
+  #     - name: Create mountpoint for {boot, home} volume
+  #       file:
+  #         path: /mnt/boot
+  #         state: directory
+  #       file:
+  #         path: /mnt/boot/efi
+  #         state: directory
+  #       file:
+  #         path: /mnt/home
+  #         state: directory
+  #     # boot
+  #     - name: Mount boot filesystem
+  #       mount:
+  #         path: /mnt/boot/efi
+  #         src: '{{ install_drive }}1'
+  #         fstype: vfat
+  #         state: mounted
+  #     # home
+  #     - name: Mount home filesystem
+  #       mount:
+  #         path: /mnt
+  #         src: '{{ install_drive }}3'
+  #         fstype: ext4
+  #         state: mounted
+  #     # swap
+  #     - name: Mount swap filesystem
+  #       mount:
+  #         src: '{{ install_drive }}4'
+  #         fstype: swap
+  #         opts: sw
+  #         passno: 0
+  #         dump: 0
+  #         state: present

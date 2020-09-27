@@ -1,1 +1,2 @@
 ansible_sudo_pass: ""
+install_drive: "/dev/sdc"
