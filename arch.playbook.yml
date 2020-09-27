@@ -1,0 +1,121 @@
+---
+- name: "Playing with Ansible and Git"
+  hosts: all
+  connection: local
+  become: "yes"
+
+  vars:
+    install_drive: "/dev/sdc"
+
+  tasks:
+  ## Partitions disk
+  - name: "Partitions disk"
+    block:
+      - name: Create boot partition
+        parted:
+          device: '{{ install_drive }}'
+          label: gpt
+          number: 1
+          part_end: 512MB
+          name: boot
+          flags: [boot, esp]
+          state: present
+          part_type: primary
+      - name: Create root partition
+        parted:
+          device: '{{ install_drive }}'
+          label: gpt
+          number: 2
+          part_start: 512MB
+          part_end: 32GB
+          name: root
+          state: present
+          part_type: primary
+      - name: Create home partition
+        parted:
+          device: '{{ install_drive }}'
+          label: gpt
+          number: 3
+          part_start: 32GB
+          part_end: 42GB
+          name: home
+          state: present
+          part_type: primary
+      - name: Create home partition
+        parted:
+          device: '{{ install_drive }}'
+          label: gpt
+          number: 4
+          part_start: 42GB
+          part_end: 50GB
+          name: swap
+          state: present
+          part_type: primary
+  ## Create filesystems
+  - name: Create filesystems
+    block:
+      - name: Create FAT32 filesystem in boot partition
+        filesystem:
+          dev: '{{ install_drive }}1'
+          fstype: vfat
+          opts: -F32
+          force: yes
+      - name: Create ext4 filesystem in root volume
+        filesystem:
+          dev: '{{ install_drive }}2'
+          fstype: ext4
+          force: yes
+      - name: Create ext4 filesystem in home volume
+        filesystem:
+          dev: '{{ install_drive }}3'
+          fstype: ext4
+          force: yes
+      - name: Create ext4 filesystem in swap volume
+        filesystem:
+          dev: '{{ install_drive }}4'
+          fstype: swap
+          force: yes
+  ## Mount filesystems
+  - name: Mount filesystems
+    block:
+      # root
+      - name: Mount root filesystem
+        mount:
+          path: /mnt
+          src: '{{ install_drive }}2'
+          fstype: ext4
+          state: mounted
+      # mountpoint
+      - name: Create mountpoint for {boot, home} volume
+        file:
+          path: /mnt/boot
+          state: directory
+        file:
+          path: /mnt/boot/efi
+          state: directory
+        file:
+          path: /mnt/home
+          state: directory
+      # boot
+      - name: Mount boot filesystem
+        mount:
+          path: /mnt/boot/efi
+          src: '{{ install_drive }}1'
+          fstype: vfat
+          state: mounted
+      # home
+      - name: Mount home filesystem
+        mount:
+          path: /mnt
+          src: '{{ install_drive }}3'
+          fstype: ext4
+          state: mounted
+      # swap
+      - name: Mount swap filesystem
+        mount:
+          src: '{{ install_drive }}4'
+          fstype: swap
+          opts: sw
+          passno: 0
+          dump: 0
+          state: present
