@@ -14,19 +14,43 @@
     command: arch-chroot /mnt hwclock --systohc --utc
     register: chroot_result
 
-  - name: Enter arch-chroot bootctl install
-    command: arch-chroot /mnt bootctl install
-    register: chroot_result
+  - name: Setup bootctl
+    block:
+      - name: Enter arch-chroot bootctl install
+        command: arch-chroot /mnt bootctl install
+        register: chroot_result
 
-  - name: Enter arch-chroot loader.conf
-    command: arch-chroot /mnt "default arch" > /boot/efi/loader/loader.conf
-    register: chroot_result
+      - name: Enter arch-chroot loader.conf
+        command: arch-chroot /mnt rm /boot/efi/loader/loader.conf
+        register: chroot_result
 
-  - name: Enter arch-chroot arch.conf
-    command: arch-chroot /mnt "title  Arch Linux" > /boot/efi/loader/entries/arch.conf
-    command: arch-chroot /mnt "linux  /vmlinuz-linux-lts" >> /boot/efi/loader/entries/arch.conf
-    command: arch-chroot /mnt "options  root=/dev/sdc2 rw" >> /boot/efi/loader/entries/arch.conf
-    register: chroot_result
+      - name: Create loader.conf
+        copy:
+          content: |
+            default  arch
+          dest: /boot/efi/loader/loader.conf
+
+      - name: Create arch.conf
+        copy:
+          content: |
+            title  Arch Linux Stage
+            linux  /vmlinuz-linux-lts
+            initrd  /initramfs-linux-lts.img
+            options  root=/dev/sdc2 rw
+          dest: /boot/efi/loader/entries/arch.conf
+
+  - name: Setup hostname
+    block:
+      - name: Set hostname
+          copy:
+            content: 'arch-stage'
+            dest: /mnt/etc/hostname
+      - name: Set localhost
+          copy:
+            content: |
+              127.0.0.1 localhost arch-stage
+              ::1 localhost arch-stage
+            dest: /etc/hosts
 
   - debug:
       var: chroot_result.stdout_lines
