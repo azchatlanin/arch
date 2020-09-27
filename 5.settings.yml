@@ -28,10 +28,10 @@
       - name: Create arch.conf
         copy:
           content: |
-            title  Arch Linux Stage
-            linux  /vmlinuz-linux-lts
-            initrd  /initramfs-linux-lts.img
-            options  root=/dev/sdc2 rw
+            title Arch Linux Stage
+            linux /vmlinuz-linux-lts
+            initrd /initramfs-linux-lts.img
+            options root=/dev/sdc2 rw
           dest: /mnt/boot/efi/loader/entries/arch.conf
 
   - name: Setup hostname
@@ -47,3 +47,21 @@
             127.0.0.1 localhost arch-stage
             ::1 localhost arch-stage
           dest: /mnt/etc/hosts
+
+  - name: Setup locales
+      block:
+        - name: Configure locale.gen
+          lineinfile:
+            dest: /mnt/etc/locale.gen
+            regexp: '{{ item.regex }}'
+            line: '{{ item.line }}'
+          loop:
+            - {regex: en_US\.UTF-8 UTF-8, line: en_US.UTF-8 UTF-8}
+            - {regex: ru_RU\.UTF-8 UTF-8, line: ru_RU.UTF-8 UTF-8}
+        - name: Create locale.conf
+          copy:
+            content: "LANG=en_US.UTF-8"
+            dest: /mnt/etc/locale.conf
+        - name: Generate locales
+          command: arch-chroot /mnt export LANG=en_US.UTF-8
+          command: arch-chroot /mnt locale-gen
