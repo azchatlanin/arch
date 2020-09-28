@@ -11,7 +11,7 @@
       - name: Create FAT32 filesystem in boot partition
         filesystem:
           dev: '{{ install_drive }}1'
-          fstype: fat
+          fstype: vfat
           opts: '-F 32 -n EFI'
           force: yes
       - name: Create ext4 filesystem in root volume

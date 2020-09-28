@@ -28,7 +28,7 @@
         mount:
           path: /mnt/boot/efi
           src: '{{ install_drive }}1'
-          fstype: fat
+          fstype: vfat
           state: mounted
       # swap
       - name: Mount swap filesystem
