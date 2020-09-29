@@ -2,7 +2,7 @@
 - name: Setup user account
   block:
     - name: Change root password
-      user: name=root update_password=always password={{ user_password | password_hash('sha512') }}
+      command: arch-chroot /mnt passwd
 
     - name: Create user account
       command: arch-chroot /mnt useradd --create-home --user-group --groups wheel {{ user_name }} --password {{ user_password | password_hash('sha512') }}
