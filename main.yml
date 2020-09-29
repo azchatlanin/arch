@@ -3,6 +3,10 @@
   connection: local
   roles:
     - archlinux
+
+  vars:
+    install_drive: /dev/sdc
+
   vars_prompt:
     - name: "user_name"
       prompt: "Enter your system user name (user_name)"
@@ -16,6 +20,6 @@
     - name: "user_password"
       prompt: "Enter your user password (user_password)"
       private: false
-    - name: "install_drive"
-      prompt: "Enter your install drive (install_drive)"
-      private: false
+    # - name: "install_drive"
+    #   prompt: "Enter your install drive (install_drive)"
+    #   private: false

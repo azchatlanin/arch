@@ -2,31 +2,31 @@
 - name: Run pacstrap
   block:
     - name: Mount ROOT filesystem
-    command: pacstrap /mnt {{ item }}
-    loop:
-        - "base"
-        - "base-devel"
-        - "linux-lts"
-        - "linux-firmware"
-        - "grub"
-        - "efibootmgr"
-        # - "ansible"
-        # - "git"
-        # - "bash-completion"
-        # - "networkmanager"
-        # - "wireless_tools"
-        # - "modemmanager"
-        # - "mobile-broadband-provider-info "
-        # - "usb_modeswitch"
-        # - "rp-pppoe"
-        # - "network-manager-applet"
-        # - "net-tools"
-        # - "wpa_supplicant"
-        # - "dialog"
-        # - "curl"
-        # - "wget"
-        # - "tar"
-        # - "alacritty"
+      command: pacstrap /mnt {{ item }}
+      loop:
+          - "base"
+          - "base-devel"
+          - "linux-lts"
+          - "linux-firmware"
+          - "grub"
+          - "efibootmgr"
+          # - "ansible"
+          # - "git"
+          # - "bash-completion"
+          # - "networkmanager"
+          # - "wireless_tools"
+          # - "modemmanager"
+          # - "mobile-broadband-provider-info "
+          # - "usb_modeswitch"
+          # - "rp-pppoe"
+          # - "network-manager-applet"
+          # - "net-tools"
+          # - "wpa_supplicant"
+          # - "dialog"
+          # - "curl"
+          # - "wget"
+          # - "tar"
+          # - "alacritty"
 
     - name: Generate blank fstab
       command: genfstab -U /mnt >> /mnt/etc/fstab

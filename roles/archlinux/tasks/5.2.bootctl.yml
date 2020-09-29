@@ -22,4 +22,4 @@
         dest: /mnt/boot/efi/loader/entries/arch.conf
 
     - name: Create new initramfs
-      command: arch-chroot /mnt mkinitcpio -p linux
+      command: arch-chroot /mnt mkinitcpio -p linux-lts
