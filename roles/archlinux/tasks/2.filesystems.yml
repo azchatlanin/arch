@@ -1,0 +1,19 @@
+---
+- name: Create filesystems
+  block:
+    - name: Create FAT32 filesystem in BOOT partition
+      filesystem:
+        dev: '{{ install_drive }}1'
+        fstype: vfat
+        opts: '-F 32 -n EFI'
+        force: yes
+    - name: Create ext4 filesystem in ROOT volume
+      filesystem:
+        dev: '{{ install_drive }}2'
+        fstype: ext4
+        force: yes
+    - name: Create filesystem in SWAP volume
+      filesystem:
+        dev: '{{ install_drive }}3'
+        fstype: swap
+        force: yes

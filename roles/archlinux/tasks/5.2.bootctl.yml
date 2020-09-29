@@ -1,0 +1,25 @@
+---
+- name: Setup bootctl
+  block:
+    - name: Enter arch-chroot bootctl install
+      command: arch-chroot /mnt bootctl install
+
+    - name: Enter arch-chroot loader.conf
+      command: arch-chroot /mnt rm /boot/efi/loader/loader.conf
+
+    - name: Create loader.conf
+      copy:
+        content: 'default  arch'
+        dest: /mnt/boot/efi/loader/loader.conf
+
+    - name: Create arch.conf
+      copy:
+        content: |
+          title Arch Linux Stage
+          linux /vmlinuz-linux-lts
+          initrd /initramfs-linux-lts.img
+          options root=/dev/sdc2 rw
+        dest: /mnt/boot/efi/loader/entries/arch.conf
+
+    - name: Create new initramfs
+      command: arch-chroot /mnt mkinitcpio -p linux

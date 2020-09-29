@@ -1,0 +1,26 @@
+---
+- name: Mount filesystems
+  block:
+    # root
+    - name: Mount ROOT filesystem
+      mount:
+        path: /mnt
+        src: '{{ install_drive }}2'
+        fstype: ext4
+        state: mounted
+    # mountpoint
+    - name: Create mountpoint for BOOT volume
+      file:
+        path: /mnt/boot/efi
+        state: directory
+        recurse: yes
+    # boot
+    - name: Mount BOOT filesystem
+      mount:
+        path: /mnt/boot/efi
+        src: '{{ install_drive }}1'
+        fstype: vfat
+        state: mounted
+    # swap
+    - name: Mount SWAP filesystem
+      command: 'swapon {{ install_drive }}3'

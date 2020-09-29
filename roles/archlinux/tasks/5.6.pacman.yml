@@ -1,0 +1,14 @@
+---
+- name: Setup user account
+  block:
+    - name: Chage pacman.conf
+      lineinfile:
+        regexp: '{{ item.regex }}'
+        line: '{{ item.line }}'
+        dest: /mnt/etc/pacman.conf
+      loop:
+        - {regex: Color, line: Color}
+        - {regex: TotalDownload, line: TotalDownload}
+        - {regex: VerbosePkgList, line: VerbosePkgList}
+        - {regex: multilib, line: '[multilib]'}
+        - {regex: Include = /etc/pacman.d/mirrorlist, line: Include = /etc/pacman.d/mirrorlist}

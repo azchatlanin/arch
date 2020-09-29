@@ -1,0 +1,14 @@
+---
+- name: Setup hostname
+  block:
+    - name: Set hostname
+      copy:
+        content: 'arch-stage'
+        dest: /mnt/etc/hostname
+
+    - name: Set localhost
+      copy:
+        content: |
+          127.0.0.1 localhost arch-stage
+          ::1 localhost arch-stage
+        dest: /mnt/etc/hosts

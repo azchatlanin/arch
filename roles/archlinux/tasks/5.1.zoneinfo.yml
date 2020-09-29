@@ -1,0 +1,9 @@
+---
+- name: Run pacstrap
+  block:
+    - name: Enter arch-chroot localtime
+      command: arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+
+    - name: Enter arch-chroot hwclock
+      command: arch-chroot /mnt hwclock --systohc --utc
+

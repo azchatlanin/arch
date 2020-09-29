@@ -1,0 +1,33 @@
+---
+- name: "Partitions disk"
+  block:
+    - name: Create boot partition
+      parted:
+        device: '{{ install_drive }}'
+        label: gpt
+        number: 1
+        part_end: 512MB
+        name: boot
+        flags: [boot, esp]
+        state: present
+        part_type: primary
+    - name: Create root partition
+      parted:
+        device: '{{ install_drive }}'
+        label: gpt
+        number: 2
+        part_start: 512MB
+        part_end: 22GB
+        name: root
+        state: present
+        part_type: primary
+    - name: Create swap partition
+      parted:
+        device: '{{ install_drive }}'
+        label: gpt
+        number: 3
+        part_start: 22GB
+        part_end: 25GB
+        name: swap
+        state: present
+        part_type: primary

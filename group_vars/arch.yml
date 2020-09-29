@@ -1,4 +1,0 @@
-ansible_sudo_pass: ""
-user_name: ""
-user_password: ""
-install_drive: "/dev/sdc"
