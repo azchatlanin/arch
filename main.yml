@@ -6,6 +6,13 @@
 
   vars:
     install_drive: /dev/sdc
+    user_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      66643331386338306366326332646635613632383436396566346262616432663431623165303036
+      6438616338303861336365653231613630323431386130380a343662323763653132366233313863
+      66336435396437333566353938623832313238663934303631326464386165373930646536393665
+      3735383032383038340a363966366535376366646633616636376363323036363237616233666333
+      65386136333337333063373330613437393233306266666231666438346561333138
 
   vars_prompt:
     - name: "user_name"
@@ -17,9 +24,9 @@
     - name: "user_email"
       prompt: "Enter your email address (user_email)"
       private: false
-    - name: "user_password"
-      prompt: "Enter your user password (user_password)"
-      private: false
+    # - name: "user_password"
+    #   prompt: "Enter your user password (user_password)"
+    #   private: false
     # - name: "install_drive"
     #   prompt: "Enter your install drive (install_drive)"
     #   private: false
