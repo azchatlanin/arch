@@ -1,5 +1,4 @@
 #!/bin/bash
 
-# ansible-playbook main.yml --ask-vault-pass
-
+# chmod ugo+x
 mount / -o remount,size=1G /run/archiso/cowspace
