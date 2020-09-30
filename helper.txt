@@ -1,1 +1,4 @@
+python-pip
+pip install pexpect
+
 mount / -o remount,size=1G /run/archiso/cowspace

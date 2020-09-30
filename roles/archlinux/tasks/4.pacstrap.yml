@@ -10,7 +10,6 @@
           - "linux-firmware"
           - "grub"
           - "efibootmgr"
-          - "python3-pip"
           # - "ansible"
           # - "git"
           # - "bash-completion"
@@ -31,6 +30,3 @@
 
     - name: Generate blank fstab
       command: genfstab -U /mnt >> /mnt/etc/fstab
-
-    - name: Install pexpect
-      command: arch-chroot /mnt pip3 install pexpect
