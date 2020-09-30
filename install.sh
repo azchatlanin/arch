@@ -1,7 +1,5 @@
+#!/bin/bash
 mount / -o remount,size=1G /run/archiso/cowspace
-python-pip
+pacman -S ansible python-pip
 pip install pexpect
 ansible-playbook main.yml
-
-chmod +x countfile
-sh countfile
