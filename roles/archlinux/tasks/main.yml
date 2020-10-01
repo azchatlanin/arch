@@ -11,3 +11,4 @@
 - import_tasks: 9.account.yml
 - import_tasks: 10.pacman.yml
 - import_tasks: 11.grub.yml
+- import_tasks: 12.net.yml
