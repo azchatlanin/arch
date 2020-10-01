@@ -1,7 +1,2 @@
-mount / -o remount,size=1G /run/archiso/cowspace
-python-pip
-pip install pexpect
-ansible-playbook main.yml
-
-chmod +x countfile
-sh countfile
+chmod +x install.sh
+sh install.sh
