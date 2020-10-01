@@ -1,9 +1,9 @@
 ---
 - name: Setup Network Manager
   block:
-    - name: Install grub
+    - name: Enable NetworkManager
       command: arch-chroot /mnt systemctl enable NetworkManager.service
-    - name: Create grub config
+    - name: Enable wpa_supplicant
       command: arch-chroot /mnt systemctl enable wpa_supplicant.service
-    - name: Create grub config
+    - name: Start NetworkManager
       command: arch-chroot /mnt systemctl start NetworkManager.service

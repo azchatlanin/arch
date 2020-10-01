@@ -27,6 +27,7 @@
           - "wget"
           - "tar"
           - "alacritty"
+          - "neovim"
 
     - name: Generate blank fstab
       command: genfstab -U /mnt >> /mnt/etc/fstab
