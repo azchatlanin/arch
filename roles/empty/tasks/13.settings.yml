@@ -1,0 +1,5 @@
+---
+- name: Setup Network Manager
+  block:
+    - name: Clone settings
+      command: git clone https://github.com/azchatlanin/arch.git /mnt/home/{{ user_name }}

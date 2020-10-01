@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   roles:
-    - archlinux
+    - empty
 
   vars:
     install_drive: /dev/sdc
