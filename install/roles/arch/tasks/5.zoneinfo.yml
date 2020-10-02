@@ -1,5 +1,6 @@
 ---
 - name: Run pacstrap
+  when: user_password == user_password_check
   block:
     - name: Enter arch-chroot localtime
       command: arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime

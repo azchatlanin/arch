@@ -1,5 +1,6 @@
 ---
 - name: Setup user account
+  when: user_password == user_password_check
   block:
     - name: Change root password
       expect:

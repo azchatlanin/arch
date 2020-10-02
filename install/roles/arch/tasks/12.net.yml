@@ -1,5 +1,6 @@
 ---
 - name: Setup Network Manager
+  when: user_password == user_password_check
   block:
     - name: Enable NetworkManager
       command: arch-chroot /mnt systemctl enable NetworkManager.service

@@ -1,5 +1,6 @@
 ---
 - name: Setup grub
+  when: user_password == user_password_check
   block:
     - name: Install grub
       command: arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB

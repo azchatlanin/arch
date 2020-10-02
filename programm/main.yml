@@ -2,7 +2,4 @@
 - hosts: localhost
   connection: local
   roles:
-    - settings
-
-  vars:
-    install_drive: /dev/sdc
+    - arch

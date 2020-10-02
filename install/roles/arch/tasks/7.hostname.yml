@@ -1,5 +1,6 @@
 ---
 - name: Setup hostname
+  when: user_password == user_password_check
   block:
     - name: Set hostname
       copy:

@@ -1,5 +1,6 @@
 ---
 - name: Setup locales
+  when: user_password == user_password_check
   block:
     - name: Configure locale.gen
       lineinfile:

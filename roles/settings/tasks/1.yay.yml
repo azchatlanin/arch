@@ -1,7 +1,0 @@
----
-- name: Install yay
-  block:
-    - name: Clone yay
-      command: arch-chroot /mnt git clone https://aur.archlinux.org/yay.git
-    - name: Makepkg yay
-      command: arch-chroot /mnt cd yay && makepkg -csi

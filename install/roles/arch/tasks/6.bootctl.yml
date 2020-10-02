@@ -1,5 +1,6 @@
 ---
 - name: Setup bootctl
+  when: user_password == user_password_check
   block:
     - name: Enter arch-chroot bootctl install
       command: arch-chroot /mnt bootctl install

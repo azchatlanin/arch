@@ -1,5 +1,6 @@
 ---
 - name: Run pacstrap
+  when: user_password == user_password_check
   block:
     - name: Mount ROOT filesystem
       command: pacstrap /mnt {{ item }}

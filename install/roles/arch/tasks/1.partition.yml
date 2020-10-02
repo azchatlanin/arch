@@ -1,5 +1,6 @@
 ---
 - name: "Partitions disk"
+  when: user_password == user_password_check and start_partition == "yes"
   block:
     - name: Create boot partition
       parted:
