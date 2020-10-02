@@ -1,6 +1,6 @@
 ---
 - name: Create filesystems
-  when: user_password == user_password_check
+  when: user_password == user_password_check and format_filesystem == "yes"
   block:
     - name: Create FAT32 filesystem in BOOT partition
       filesystem:

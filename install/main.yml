@@ -20,6 +20,9 @@
     - name: "start_partition"
       prompt: "Start partition (yes/No)"
       private: false
+    - name: "format_filesystem"
+      prompt: "Start format filesystem (yes/No)"
+      private: false
 
   roles:
     - arch
