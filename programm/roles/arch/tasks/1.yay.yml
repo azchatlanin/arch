@@ -2,6 +2,4 @@
 - name: Install yay
   block:
     - name: Clone yay
-      command: git clone https://aur.archlinux.org/yay.git
-    - name: Makepkg yay
-      command: cd yay && makepkg -csi
+      script: ${HOME}/arch/programm/roles/arch/utils/yay.sh
