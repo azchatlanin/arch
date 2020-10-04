@@ -1,5 +1,0 @@
----
-- name: Install yay
-  block:
-    - name: Clone yay
-      script: ${HOME}/arch/programm/roles/arch/utils/yay.sh
