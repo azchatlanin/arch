@@ -9,6 +9,7 @@ sudo rm -r yay
 
 ## start
 mkdir packages
+pacman -Q >> packages/0.base.txt
 
 yay -S xorg-server
 pacman -Q >> packages/1.xorg-server.txt
