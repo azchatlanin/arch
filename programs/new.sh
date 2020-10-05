@@ -8,47 +8,48 @@ cd
 sudo rm -r yay
 
 ## start
+mkdir packages
 
 yay -S xorg-server
-pacman -Q >> 1.xorg-server.txt
+pacman -Q >> packages/1.xorg-server.txt
 
 yay -S xorg-xinit
-pacman -Q >> 2.xorg-xinit.txt
+pacman -Q >> packages/2.xorg-xinit.txt
 
 yay -S xorg-xrandr
-pacman -Q >> 2.xorg-xrandr.txt
+pacman -Q >> packages/3.xorg-xrandr.txt
 
 yay -S ttf-font-icon ttf-font-awesome ttf-clear-sans ttf-roboto ttf-roboto-mono ttf-hack ttf-ubuntu-font-family
-pacman -Q >> 3.fonts.txt
+pacman -Q >> packages/4.fonts.txt
 
 ## i3
 yay -S i3-gaps
-pacman -Q >> 4.i3-gaps.txt
+pacman -Q >> packages/5.i3-gaps.txt
 
 yay -S i3status
-pacman -Q >> 5.i3status.txt
+pacman -Q >> packages/6.i3status.txt
 echo exec i3 >> ~/.xinitrc
 
 ## nitrogen picom
 yay -S nitrogen
-pacman -Q >> 6.nitrogen.txt
+pacman -Q >> packages/7.nitrogen.txt
 
 yay -S picom
-pacman -Q >> 7.picom.txt
+pacman -Q >> packages/8.picom.txt
 
 ## lightdm
 yay -S lightdm
-pacman -Q >> 8.lightdm.txt
+pacman -Q >> packages/9.lightdm.txt
 
 yay -S lightdm-gtk-greeter
-pacman -Q >> 9.lightdm-gtk-greeter.txt
+pacman -Q >> packages/10.lightdm-gtk-greeter.txt
 
 yay -S lightdm-gtk-greeter-settings
-pacman -Q >> 10.lightdm-gtk-greeter-settings.txt
+pacman -Q >> packages/11.lightdm-gtk-greeter-settings.txt
 
 ## vivaldi
 yay -S vivaldi
-pacman -Q >> 11.vivaldi.txt
+pacman -Q >> packages/12.vivaldi.txt
 
 sudo systemctl enable lightdm.service
 
