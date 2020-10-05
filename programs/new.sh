@@ -1,16 +1,18 @@
 #!/bin/bash
 sudo pacman -Syyuu
 
+mkdir packages
+pacman -Q >> packages/base.txt
+
+## yay
 cd
 git clone https://aur.archlinux.org/yay.git
 cd yay && makepkg -csi
 cd
 sudo rm -r yay
+pacman -Q >> packages/0.yay.txt
 
-## start
-mkdir packages
-pacman -Q >> packages/0.base.txt
-
+## xorg
 yay -S xorg-server
 pacman -Q >> packages/1.xorg-server.txt
 
