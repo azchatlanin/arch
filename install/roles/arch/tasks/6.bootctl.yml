@@ -17,10 +17,10 @@
       copy:
         content: |
           title Arch Linux Stage
-          linux /vmlinuz-linux-lts
-          initrd /initramfs-linux-lts.img
+          linux /vmlinuz-linux
+          initrd /initramfs-linux.img
           options root=/dev/sdc2 rw
         dest: /mnt/boot/efi/loader/entries/arch.conf
 
     - name: Create new initramfs
-      command: arch-chroot /mnt mkinitcpio -p linux-lts
+      command: arch-chroot /mnt mkinitcpio -p linux
