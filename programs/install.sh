@@ -16,78 +16,72 @@ sudo rm -r yay
 pacman -Q >> ${PACKAGES}/0.yay.txt
 
 ##################################
-## nvidia
+## 1 nvidia
 yay -S nvidia
-pacman -Q >> ${PACKAGES}/1.nvidia.txt
+pacman -Q >> ${PACKAGES}/1.1.nvidia.txt
 
 yay -S nvidia-settings
-pacman -Q >> ${PACKAGES}/2.nvidia-settings.txt
+pacman -Q >> ${PACKAGES}/1.2.nvidia-settings.txt
 
 yay -S nvidia-utils
-pacman -Q >> ${PACKAGES}/3.nvidia-utils.txt
+pacman -Q >> ${PACKAGES}/1.3.nvidia-utils.txt
 
 ##################################
-## xorg
+## 2 xorg
 yay -S xorg-server
-pacman -Q >> ${PACKAGES}/1.xorg-server.txt
+pacman -Q >> ${PACKAGES}/2.1.xorg-server.txt
 
 yay -S xorg-xinit
-pacman -Q >> ${PACKAGES}/2.xorg-xinit.txt
+pacman -Q >> ${PACKAGES}/2.2.xorg-xinit.txt
 
 yay -S xorg-xrandr
-pacman -Q >> ${PACKAGES}/3.xorg-xrandr.txt
-
-yay -S ttf-font-awesome ttf-clear-sans ttf-roboto ttf-roboto-mono ttf-hack ttf-ubuntu-font-family
-pacman -Q >> ${PACKAGES}/4.fonts.txt
+pacman -Q >> ${PACKAGES}/2.3.xorg-xrandr.txt
 
 ##################################
-## i3
+## 3 i3
 yay -S i3-gaps
-pacman -Q >> ${PACKAGES}/5.i3-gaps.txt
+pacman -Q >> ${PACKAGES}/3.1.i3-gaps.txt
 
 yay -S i3blocks
-pacman -Q >> ${PACKAGES}/8.i3blocks.txt
+pacman -Q >> ${PACKAGES}/3.2.i3blocks.txt
 
 yay -S i3lock-color
-pacman -Q >> ${PACKAGES}/9.i3lock-color.txt
+pacman -Q >> ${PACKAGES}/3.3.i3lock-color.txt
 
 yay -S i3status
-pacman -Q >> ${PACKAGES}/6.i3status.txt
+pacman -Q >> ${PACKAGES}/3.4.i3status.txt
 echo exec i3 >> ~/.xinitrc
-
+cp -R $HOME/arch/programs/.config $HOME
 ##################################
-## nitrogen picom
+## 4 nitrogen picom rofi
 yay -S nitrogen
-pacman -Q >> ${PACKAGES}/7.nitrogen.txt
+pacman -Q >> ${PACKAGES}/4.1.nitrogen.txt
 
 yay -S picom
-pacman -Q >> ${PACKAGES}/8.picom.txt
+pacman -Q >> ${PACKAGES}/4.2.picom.txt
+mkdir -p ~/.config/picom && cp /etc/xdg/picom.conf.example ~/.config/picom/picom.conf
+
+yay -S rofi
+pacman -Q >> ${PACKAGES}/4.3.rofi.txt
 
 ##################################
-## lightdm
+## 5 lightdm
 yay -S lightdm
-pacman -Q >> ${PACKAGES}/9.lightdm.txt
+pacman -Q >> ${PACKAGES}/5.1.lightdm.txt
 
 yay -S lightdm-gtk-greeter
-pacman -Q >> ${PACKAGES}/10.lightdm-gtk-greeter.txt
+pacman -Q >> ${PACKAGES}/5.2.lightdm-gtk-greeter.txt
 
 yay -S lightdm-gtk-greeter-settings
-pacman -Q >> ${PACKAGES}/11.lightdm-gtk-greeter-settings.txt
-
-##################################
-## vivaldi
-yay -S vivaldi
-pacman -Q >> ${PACKAGES}/12.vivaldi.txt
-
+pacman -Q >> ${PACKAGES}/5.3.lightdm-gtk-greeter-settings.txt
 sudo systemctl enable lightdm.service
 
+##################################
+## 6 vivaldi
+yay -S vivaldi
+pacman -Q >> ${PACKAGES}/6.1.vivaldi.txt
 
-
-# i3wn:
-# ~/.config/i3/config
-# set $mode Mod4
-# exec --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
-# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-# exec --start-up-id xrandr --output DP-4 --primary --mode 1920x1080 --rotate normal --output DP-0 --mode 1920x1080 --rotate normal --left-of DP-4 --output DP-2 --mode 1920x1080 --rotate normal --right-of DP-4
-# bindsym $mod+d exec dmenu_run ---> bindsym $mod+d exec --no-startup-id rofi -theme android_notificaton -show run
-# exec --no-startup-id i3-msg 'workspace 1:Web; exec /usr/bin/firefox'
+##################################
+## 7 fonts
+yay -S ttf-font-awesome ttf-clear-sans ttf-roboto ttf-roboto-mono ttf-hack ttf-ubuntu-font-family
+pacman -Q >> ${PACKAGES}/7.1.fonts.txt
