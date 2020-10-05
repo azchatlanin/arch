@@ -7,7 +7,7 @@
       loop:
           - "base"
           - "base-devel"
-          - "linux-lts"
+          - "linux"
           - "linux-firmware"
           - "grub"
           - "efibootmgr"
