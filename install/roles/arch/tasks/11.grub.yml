@@ -6,14 +6,14 @@
       command: arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
     - name: Copying file arch
       copy:
-        src: files/arch.jpg
-        dest: /mnt/boot/grub/arch.jpg
+        src: arch.png
+        dest: /mnt/boot/grub/arch.png
     - name: Chage grub
       lineinfile:
         regexp: '{{ item.regex }}'
         line: '{{ item.line }}'
         dest: /mnt/etc/default/grub
       loop:
-        - {regex: GRUB_BACKGROUND, line: GRUB_BACKGROUND="/boot/grub/arch.jpg"}
+        - {regex: GRUB_BACKGROUND, line: GRUB_BACKGROUND="/boot/grub/arch.png"}
     - name: Create grub config
       command: arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
