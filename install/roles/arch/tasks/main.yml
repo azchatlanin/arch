@@ -12,3 +12,4 @@
 - import_tasks: 10.pacman.yml
 - import_tasks: 11.grub.yml
 - import_tasks: 12.net.yml
+- import_tasks: 13.clone.yml
