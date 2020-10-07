@@ -78,9 +78,12 @@ pacman -Q >> ${PACKAGES}/5.3.lightdm-gtk-greeter-settings.txt
 sudo systemctl enable lightdm.service
 
 ##################################
-## 6 vivaldi
+## 6 browsers
 yay -S vivaldi
 pacman -Q >> ${PACKAGES}/6.1.vivaldi.txt
+
+yay -S google-chrome
+pacman -Q >> ${PACKAGES}/6.2.google-chrome.txt
 
 ##################################
 ## 7 fonts
