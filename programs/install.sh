@@ -133,9 +133,7 @@ yay -S pamac-aur
 pacman -Q >> ${PACKAGES}/10.1.pamac-aur.txt
 
 ##################################
-## 11 arc-gtk-theme
-yay -S arc-gtk-theme
-pacman -Q >> ${PACKAGES}/11.1.arc-gtk-theme.txt
+## 11 background
 sudo cp $HOME/arch/programs/wallpapers/arch.png /usr/share/pixmaps/arch.png
 # sudo nvim /etc/lightdm/lightdm-gtk-greeter.conf
 # background=/usr/share/pixmaps/arch.jpg
