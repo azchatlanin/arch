@@ -69,8 +69,11 @@ pacman -Q >> ${PACKAGES}/4.3.rofi.txt
 yay -S lightdm
 pacman -Q >> ${PACKAGES}/5.1.lightdm.txt
 
-yay -S lightdm-webkit-greeter
-pacman -Q >> ${PACKAGES}/5.2.lightdm-webkit-greeter.txt
+yay -S lightdm-gtk-greeter
+pacman -Q >> ${PACKAGES}/5.2.lightdm-gtk-greeter.txt
+
+yay -S lightdm-gtk-greeter-settings
+pacman -Q >> ${PACKAGES}/5.3.lightdm-gtk-greeter-settings.txt
 
 sudo systemctl enable lightdm.service
 
