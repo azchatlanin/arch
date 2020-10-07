@@ -126,3 +126,17 @@ if find $mirrorlist -mtime +1 | grep -q '.'; then
   fi
 fi
 echo "$mirrorlist is up to date!"
+
+##################################
+## 10 pamac-aur
+yay -S pamac-aur
+pacman -Q >> ${PACKAGES}/10.1.pamac-aur.txt
+
+##################################
+## 11 arc-gtk-theme
+yay -S arc-gtk-theme
+pacman -Q >> ${PACKAGES}/11.1.arc-gtk-theme.txt
+sudo cp $HOME/arch/programs/wallpapers/arch.png /usr/share/pixmaps/arch.png
+# sudo nvim /etc/lightdm/lightdm-gtk-greeter.conf
+# background=/usr/share/pixmaps/arch.jpg
+##
