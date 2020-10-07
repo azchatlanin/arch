@@ -129,8 +129,8 @@ echo "$mirrorlist is up to date!"
 
 ##################################
 ## 10 pamac-aur
-yay -S pamac-aur
-pacman -Q >> ${PACKAGES}/10.1.pamac-aur.txt
+yay -S pamac-aur-git
+pacman -Q >> ${PACKAGES}/10.1.pamac-aur-git.txt
 
 ##################################
 ## 11 background
