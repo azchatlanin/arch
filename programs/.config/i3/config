@@ -183,4 +183,4 @@ bar {
 
 exec --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-bindsym $mod+d exec --no-startup-id rofi -theme android_notificaton -show run
+bindsym $mod+d exec --no-startup-id rofi -theme nord -show run

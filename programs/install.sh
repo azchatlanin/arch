@@ -105,3 +105,23 @@ pacman -Q >> ${PACKAGES}/8.5.pulseaudio.txt
 
 yay -S pulseaudio-alsa
 pacman -Q >> ${PACKAGES}/8.6.pulseaudio-alsa.txt
+
+##################################
+## 9 reflector
+yay -S reflector
+pacman -Q >> ${PACKAGES}/9.1.reflector.txt
+
+mirrorlist="/etc/pacman.d/mirrorlist"
+if find $mirrorlist -mtime +1 | grep -q '.'; then
+  echo "Updating $mirrorlist..."
+  if ! reflector \
+    --protocol https \
+    --country "Russia" \
+    --latest 32 \
+    --sort rate \
+    --save $mirrorlist; then
+    echo "Unable to update $mirrorlist"
+    exit 1
+  fi
+fi
+echo "$mirrorlist is up to date!"
