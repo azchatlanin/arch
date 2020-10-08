@@ -141,3 +141,8 @@ sudo cp $HOME/arch/programs/wallpapers/arch.png /usr/share/pixmaps/arch.png
 # sudo nvim /etc/lightdm/lightdm-gtk-greeter.conf
 # background=/usr/share/pixmaps/arch.jpg
 ##
+
+##################################
+## 12 nvim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'

@@ -1,7 +1,11 @@
 vim: https://proglib.io/p/exploring-vim
 
 i3: https://github.com/rodrigogonegit/dotfiles
-nvim: https://github.com/aswinpajayan/dot-files
+
+nvim:
+  https://github.com/aswinpajayan/dot-files
+  https://github.com/kaicataldo/material.vim
+
 rofi: https://github.com/Alex0Blackwell/dotfiles
 lightdm: https://techhut.tv/lightdm-custom-login-screen-in-linux/
 
