@@ -66,17 +66,23 @@ yay -S rofi
 pacman -Q >> ${PACKAGES}/4.3.rofi.txt
 
 ##################################
-## 5 lightdm
-yay -S lightdm
-pacman -Q >> ${PACKAGES}/5.1.lightdm.txt
+## 5 sddm
+yay -S sddm
+pacman -Q >> ${PACKAGES}/5.1.sddm.txt
+sudo systemctl enable sddm.service
 
-yay -S lightdm-gtk-greeter
-pacman -Q >> ${PACKAGES}/5.2.lightdm-gtk-greeter.txt
+yay -S gst-libav gst-plugins-good
+pacman -Q >> ${PACKAGES}/5.2.gst-libav.txt
 
-yay -S lightdm-gtk-greeter-settings
-pacman -Q >> ${PACKAGES}/5.3.lightdm-gtk-greeter-settings.txt
+yay -S phonon-qt5-gstreamer
+pacman -Q >> ${PACKAGES}/5.3.phonon.txt
 
-sudo systemctl enable lightdm.service
+yay -S qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
+pacman -Q >> ${PACKAGES}/5.4.qt5.txt
+
+git clone git@github.com:3ximus/aerial-sddm-theme.git
+sudo mv aerial-sddm-theme /usr/share/sddm/themes
+sudo sed -i "s/^Current=.*/Current=aerial-sddm-theme/g" /etc/sddm.conf
 
 ##################################
 ## 6 browsers
@@ -132,13 +138,6 @@ echo "$mirrorlist is up to date!"
 ## 10 pamac-aur
 yay -S pamac-aur-git
 pacman -Q >> ${PACKAGES}/10.1.pamac-aur-git.txt
-
-##################################
-## 11 background
-sudo cp $HOME/arch/programs/wallpapers/arch.png /usr/share/pixmaps/arch.png
-# sudo nvim /etc/lightdm/lightdm-gtk-greeter.conf
-# background=/usr/share/pixmaps/arch.jpg
-##
 
 ##################################
 ## 12 nvim
