@@ -36,8 +36,7 @@ pacman -Q >> ${PACKAGES}/2.2.xorg-xinit.txt
 
 yay -S xorg-xrandr
 pacman -Q >> ${PACKAGES}/2.3.xorg-xrandr.txt
-
-sudo cp arc/programs/xorg.conf /etc/X11
+sudo cp $HOME/arch/programs/xorg.conf /etc/X11
 
 ##################################
 ## 3 i3
@@ -81,11 +80,8 @@ sudo systemctl enable lightdm.service
 
 ##################################
 ## 6 browsers
-yay -S vivaldi
-pacman -Q >> ${PACKAGES}/6.1.vivaldi.txt
-
 yay -S google-chrome
-pacman -Q >> ${PACKAGES}/6.2.google-chrome.txt
+pacman -Q >> ${PACKAGES}/6.1.google-chrome.txt
 
 ##################################
 ## 7 fonts
