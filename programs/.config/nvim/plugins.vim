@@ -8,6 +8,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   " Airline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  " Auto save
+  Plug '907th/vim-auto-save'
   " Rnvimr
- Plug 'rbgrouleff/bclose.vim'
+  Plug 'rbgrouleff/bclose.vim'
 call plug#end()

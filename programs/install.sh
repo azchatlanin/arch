@@ -37,6 +37,8 @@ pacman -Q >> ${PACKAGES}/2.2.xorg-xinit.txt
 yay -S xorg-xrandr
 pacman -Q >> ${PACKAGES}/2.3.xorg-xrandr.txt
 
+sudo cp arc/programs/xorg.conf /etc/X11
+
 ##################################
 ## 3 i3
 yay -S i3-gaps

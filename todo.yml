@@ -7,9 +7,14 @@ nvim:
   https://github.com/kaicataldo/material.vim
 
 rofi: https://github.com/Alex0Blackwell/dotfiles
-lightdm: https://techhut.tv/lightdm-custom-login-screen-in-linux/
 
+Все просто, открываем установившиеся вместе с проприетарным драйвером приложение NVIDIA X Server Settings.
+На вкладке OpenGL Settings убеждаемся что включены обе галки “Sync to VBlank” и “Allow Flipping”.
 
-https://geekkies.in.ua/linux/nastrojka-ekrana-vhoda-lightdm-gtk-greeter.html
-arc-icon-theme
-arc-theme
+Затем на вкладке X Server Display Configuration на каждом мониторе (если их несколько, или это ноутбук с подключенным внешним монитором)
+устанавливаем разрешение соответствующие разрешению монитора и частоту обновления 60Hz (или больше если таковая имеется) жмем Apply и затем
+Save to X Configuration File(скрин 2) чтобы сохранить изменения после перезагрузки, но тут понадобиться кое-что добавить.
+
+Тыкаем Show Preview(скрин 3) и в открывшемся текстовике, в подзаголовке Section “Screen”(в самом низу) находим опцию “metamodes”(скрин 4)
+и после каждого смещения монитора (если он один после +0+0) добавляем и сохраняем по пути /etc/X11/xorg.conf
+“{ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}”
