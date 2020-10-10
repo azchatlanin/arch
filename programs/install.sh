@@ -46,13 +46,9 @@ pacman -Q >> ${PACKAGES}/3.1.i3-gaps.txt
 yay -S i3blocks
 pacman -Q >> ${PACKAGES}/3.2.i3blocks.txt
 
-yay -S i3lock-color
-pacman -Q >> ${PACKAGES}/3.3.i3lock-color.txt
-
-yay -S i3status
-pacman -Q >> ${PACKAGES}/3.4.i3status.txt
 echo exec i3 >> ~/.xinitrc
 cp -R $HOME/arch/programs/.config $HOME
+
 ##################################
 ## 4 nitrogen picom rofi
 yay -S nitrogen
@@ -60,7 +56,6 @@ pacman -Q >> ${PACKAGES}/4.1.nitrogen.txt
 
 yay -S picom
 pacman -Q >> ${PACKAGES}/4.2.picom.txt
-mkdir -p ~/.config/picom && cp /etc/xdg/picom.conf.example ~/.config/picom/picom.conf
 
 yay -S rofi
 pacman -Q >> ${PACKAGES}/4.3.rofi.txt
@@ -144,6 +139,7 @@ pacman -Q >> ${PACKAGES}/10.1.pamac-aur-git.txt
 ## 12 nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim +PlugInstall +qall >/dev/null 2>&1
 
 ##################################
 ## 13 ranger
