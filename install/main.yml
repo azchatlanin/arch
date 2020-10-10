@@ -6,13 +6,13 @@
 
   vars_prompt:
     - name: "user_name"
-      prompt: "Enter your system user name (user_name)"
+      prompt: "Enter your system user name:"
       private: false
     - name: "user_password"
-      prompt: "Enter your user password (user_password)"
+      prompt: "Enter your user password one:"
       private: false
     - name: "user_password_check"
-      prompt: "Repeat your user password (user_password_check)"
+      prompt: "Enter your user password two:"
       private: false
     - name: "start_partition"
       prompt: "Start partition (yes/No)"
@@ -22,4 +22,6 @@
       private: false
 
   roles:
-    - arch
+    - role: arch
+      vars:
+        arch_dir: /mnt/home/{{ user_name }}/arch

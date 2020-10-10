@@ -1,10 +1,11 @@
 call plug#begin('~/.config/nvim/autoload/plugged')
-  " File Explorer
-  Plug 'scrooloose/NERDTree'
+  " Ranger as File Explorer
+  Plug 'iberianpig/ranger-explorer.vim'
   " Auto pairs for '(' '[' '{'
   Plug 'jiangmiao/auto-pairs'
   " Themas
   Plug 'joshdick/onedark.vim'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
   " Airline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -12,4 +13,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug '907th/vim-auto-save'
   " Rnvimr
   Plug 'rbgrouleff/bclose.vim'
+  " This repository contains snippets files for various programming languages.
+  Plug 'honza/vim-snippets'
+  " Pasting in Vim with indentation adjusted to destination context.
+  Plug 'sickill/vim-pasta'
+  " css-color
+  Plug 'ap/vim-css-color'
 call plug#end()

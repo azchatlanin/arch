@@ -80,7 +80,8 @@ pacman -Q >> ${PACKAGES}/5.3.phonon.txt
 yay -S qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 pacman -Q >> ${PACKAGES}/5.4.qt5.txt
 
-git clone git@github.com:3ximus/aerial-sddm-theme.git
+git clone https://github.com/3ximus/aerial-sddm-theme.git
+sddm --example-config | sudo tee /etc/sddm.conf
 sudo mv aerial-sddm-theme /usr/share/sddm/themes
 sudo sed -i "s/^Current=.*/Current=aerial-sddm-theme/g" /etc/sddm.conf
 
@@ -143,3 +144,11 @@ pacman -Q >> ${PACKAGES}/10.1.pamac-aur-git.txt
 ## 12 nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+##################################
+## 13 ranger
+yay -S ranger
+pacman -Q >> ${PACKAGES}/13.1.ranger.txt
+
+yay -S w3m
+pacman -Q >> ${PACKAGES}/13.2.w3m.txt

@@ -4,7 +4,9 @@
   block:
     - name: Enable NetworkManager
       command: arch-chroot /mnt systemctl enable NetworkManager.service
+
     - name: Enable wpa_supplicant
       command: arch-chroot /mnt systemctl enable wpa_supplicant.service
+
     - name: Start NetworkManager
       command: arch-chroot /mnt systemctl start NetworkManager.service

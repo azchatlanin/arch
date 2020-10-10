@@ -1,4 +1,12 @@
 syntax enable                           " Enables syntax highlighing
+
+" https://stackoverflow.com/questions/9341768/vim-response-quite-slow/55501120#55501120
+set lazyredraw                          " don't redraw everytime
+set synmaxcol=128                       " avoid slow rendering for long lines
+syntax sync minlines=64                 " faster syntax hl
+
+
+set regexpengine=1                      "use newer regexpengine
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set nowrap                              " Display long lines as just one line
 set encoding=utf-8                      " The encoding displayed
@@ -32,14 +40,5 @@ set formatoptions-=cro                  " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 "set autochdir                           " Your working directory will always be the same as your working directory
 
-" MAPPING
-map <C-n> :NERDTreeToggle<CR>
-
-" NERDTree
-let NERDTreeShowHidden=1
-
 " Style
 colorscheme onedark
-
-" Settings
-autocmd vimenter * NERDTree /home/chatlanin " autostart NERDTree

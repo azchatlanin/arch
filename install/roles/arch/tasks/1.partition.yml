@@ -12,6 +12,7 @@
         flags: [boot, esp]
         state: present
         part_type: primary
+
     - name: Create root partition
       parted:
         device: '{{ install_drive }}'
@@ -22,6 +23,7 @@
         name: root
         state: present
         part_type: primary
+
     - name: Create swap partition
       parted:
         device: '{{ install_drive }}'
