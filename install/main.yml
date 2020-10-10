@@ -23,5 +23,3 @@
 
   roles:
     - role: arch
-      vars:
-        arch_dir: /mnt/home/{{ user_name }}/arch

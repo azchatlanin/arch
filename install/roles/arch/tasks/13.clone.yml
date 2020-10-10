@@ -3,11 +3,11 @@
   when: user_password == user_password_check
   block:
     - name: Clone settings
-      command: mkdir {{ arch_dir }}
-      command: git clone https://github.com/azchatlanin/arch.git {{ arch_dir }}
+      command: mkdir /mnt/home/{{ user_name }}/arch
+      command: git clone https://github.com/azchatlanin/arch.git /mnt/home/{{ user_name }}/arch
 
     - name: Make my directory tree readable
       file:
-        path: {{ arch_dir }}
+        path: /mnt/home/{{ user_name }}/arch
         mode: u=rwX,g=rX,o=rX
         recurse: yes
