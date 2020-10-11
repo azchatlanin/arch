@@ -179,8 +179,28 @@ bindsym $mod+r mode "resize"
 bar {
   status_command i3blocks
 	position top
+  height 20
+
+  colors {
+    background #282a36
+    statusline #1ABC9C
+    separator #1ABC9C
+    # colorclass       <border> <background> <text>
+    focused_workspace  #1ABC9C  #1ABC9C     #1F2D3A
+    inactive_workspace #1F2D3A  #1F2D3A     #1ABC9C
+  }
 }
 
+##############################################################################
+## monitors settings
+# exec --start-up-id xrandr --output DP-4 --primary --mode 1920x1080 --rotate normal --output DP-0 --mode 1920x1080 --rotate normal --left-of DP-4 --output DP-2 --mode 1920x1080 --rotate normal --right-of DP-4
+
+# rofi, layout and nitrogen
 exec --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-bindsym $mod+d exec --no-startup-id rofi -theme nord -show run
+bindsym $mod+d exec --no-startup-id rofi -theme dracula -show run
+
+# gaps and title of windows
+for_window [class=".*"] border pixel 0
+gaps inner 3
+gaps outer 3

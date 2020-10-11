@@ -148,3 +148,17 @@ pacman -Q >> ${PACKAGES}/13.1.ranger.txt
 
 yay -S w3m
 pacman -Q >> ${PACKAGES}/13.2.w3m.txt
+
+##################################
+## 14 bazel
+yay -S bazel
+pacman -Q >> ${PACKAGES}/14.1.bazel.txt
+
+##################################
+## 15 tree
+yay -S tree
+pacman -Q >> ${PACKAGES}/15.1.tree.txt
+
+##################################
+## 15 tree
+cp $HOME/arch/programs/.bash_aliases $HOME

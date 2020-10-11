@@ -9,8 +9,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   " Airline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  " Auto save
-  Plug '907th/vim-auto-save'
   " Rnvimr
   Plug 'rbgrouleff/bclose.vim'
   " This repository contains snippets files for various programming languages.
@@ -19,4 +17,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'sickill/vim-pasta'
   " css-color
   Plug 'ap/vim-css-color'
+  " c++
+  Plug 'bfrg/vim-cpp-modern'
 call plug#end()
