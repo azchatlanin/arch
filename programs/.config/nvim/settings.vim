@@ -42,3 +42,6 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 
 " Style
 colorscheme onedark
+
+" enable AutoSave on Vim startup
+let g:auto_save = 1

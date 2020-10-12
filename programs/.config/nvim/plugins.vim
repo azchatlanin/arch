@@ -19,4 +19,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'ap/vim-css-color'
   " c++
   Plug 'bfrg/vim-cpp-modern'
+  " auto-save
+  Plug '907th/vim-auto-save'
 call plug#end()
