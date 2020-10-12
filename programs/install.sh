@@ -47,6 +47,7 @@ yay -S i3blocks
 pacman -Q >> ${PACKAGES}/3.2.i3blocks.txt
 
 echo exec i3 >> ~/.xinitrc
+echo setxkbmap -option caps:hyper >> $HOME/.profile
 cp -R $HOME/arch/programs/.config $HOME
 
 ##################################
@@ -161,4 +162,4 @@ pacman -Q >> ${PACKAGES}/15.1.tree.txt
 
 ##################################
 ## 15 tree
-cp $HOME/arch/programs/.bash_aliases $HOME
+cat $HOME/arch/programs/.bash_aliases >> $HOME/.bashrc
