@@ -159,7 +159,7 @@ pacman -Q >> ${PACKAGES}/14.1.bazel.txt
 ## 15 tree
 yay -S tree
 pacman -Q >> ${PACKAGES}/15.1.tree.txt
-cat $HOME/arch/programs/.bash_aliases >> $HOME/.bashrc
+cat $HOME/arch/programs/.bashrc >> $HOME/.bashrc
 
 ##################################
 ## 16 zoom

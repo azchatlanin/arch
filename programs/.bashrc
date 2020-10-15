@@ -21,3 +21,6 @@ alias +y='yandex-disk status'
 ### SERVER
 alias srv-emuse='ssh chatlanin@95.216.220.71 -p 4999'
 alias srv-eventcheck='ssh chatlanin@195.201.6.251 -p 4999'
+
+## neofetch
+neofetch
