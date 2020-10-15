@@ -159,7 +159,20 @@ pacman -Q >> ${PACKAGES}/14.1.bazel.txt
 ## 15 tree
 yay -S tree
 pacman -Q >> ${PACKAGES}/15.1.tree.txt
+cat $HOME/arch/programs/.bash_aliases >> $HOME/.bashrc
 
 ##################################
-## 15 tree
-cat $HOME/arch/programs/.bash_aliases >> $HOME/.bashrc
+## 16 zoom
+yay -S zoom
+pacman -Q >> ${PACKAGES}/16.1.zoom.txt
+
+##################################
+## 17 telegram
+yay -S telegram-desktop
+pacman -Q >> ${PACKAGES}/17.1.telegram-desktop.txt
+
+##################################
+## 18 anyevent
+yay -S perl-anyevent-i3
+pacman -Q >> ${PACKAGES}/18.1.anyevent.txt
+cp $HOME/arch/programs/start.sh $HOME
