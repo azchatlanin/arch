@@ -254,6 +254,6 @@ gaps outer 3
 
 # Run xprop and click on the window you want to capture.
 # i3-save-tree --workspace web > wsl_1.json
-exec --no-startup-id i3-msg 'workspace $wsl_1; append_layout /home/chatlanin/wsl_1.json'
-exec --no-startup-id i3-msg 'workspace $wsl_2; append_layout /home/chatlanin/wsl_2.json'
-exec --no-startup-id i3-msg 'exec /home/chatlanin/start.sh'
+# exec --no-startup-id i3-msg 'workspace $wsl_1; append_layout /home/chatlanin/wsl_1.json'
+# exec --no-startup-id i3-msg 'workspace $wsl_2; append_layout /home/chatlanin/wsl_2.json'
+# exec --no-startup-id i3-msg 'exec /home/chatlanin/start.sh'

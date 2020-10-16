@@ -16,7 +16,7 @@
     - name: Create arch.conf
       copy:
         content: |
-          title Arch Linux Stage
+          title Arch
           linux /vmlinuz-linux
           initrd /initramfs-linux.img
           options root=/dev/sdc2 rw
