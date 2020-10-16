@@ -181,3 +181,11 @@ cp $HOME/arch/programs/start.sh $HOME
 ## 19 neofetch
 yay -S perl-anyevent-i3
 pacman -Q >> ${PACKAGES}/19.1.neofetch.txt
+
+##################################
+## 20 app
+yay -S peek
+pacman -Q >> ${PACKAGES}/20.1.peek.txt
+
+yay -S flaneshot
+pacman -Q >> ${PACKAGES}/20.2.flaneshot.txt
