@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   vars:
-    install_drive: /dev/sdc
+    install_drive: /dev/nvme0
 
   vars_prompt:
     - name: "user_name"

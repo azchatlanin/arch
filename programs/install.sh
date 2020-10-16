@@ -176,3 +176,8 @@ pacman -Q >> ${PACKAGES}/17.1.telegram-desktop.txt
 yay -S perl-anyevent-i3
 pacman -Q >> ${PACKAGES}/18.1.anyevent.txt
 cp $HOME/arch/programs/start.sh $HOME
+
+##################################
+## 19 neofetch
+yay -S perl-anyevent-i3
+pacman -Q >> ${PACKAGES}/19.1.neofetch.txt
